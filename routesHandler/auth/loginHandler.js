@@ -29,7 +29,7 @@ const loginHandler= asyncHandler(async(req,res)=>{
         if(checkPassword){
             const refreshToken=genrateRefreshToken(result._id,result.isAdmin)
             await User.findByIdAndUpdate(result._id,{refreshToken})
-            res.cookie('jwt',refreshToken,{httpOnly:true, maxAge:1000 * 60 * 60 * 24})
+            res.cookie('jwt',refreshToken,{httpOnly:true,sameSite:"None",secure:true, maxAge:1000 * 60 * 60 * 24})
             
             res.status(200).json({...others,token:genrateAccessToken(result._id,result.isAdmin)})
             return

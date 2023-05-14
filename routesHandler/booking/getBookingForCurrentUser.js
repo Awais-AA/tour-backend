@@ -6,7 +6,7 @@ const getBookedCurrentUser=asyncHandler( async(req,res)=>{
 
     try {
         const result=await BookedPoll.find().where('userWhoBooked.userId').equals(req.user);
-        res.status(200).json({result,success:'Poll created Successfully'})
+        res.status(200).json(result)
         
     } catch (error) {
         res.status(400)

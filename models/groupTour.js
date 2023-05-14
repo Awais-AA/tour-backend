@@ -26,6 +26,11 @@ const groupTourSchema=mongoose.Schema(
     required:[true,'Total Seats is Required'],
 
   },
+  availableSeats:{
+    type:Number,
+    required:[true,'Available Seats is Required'],
+
+  },
   totalDays:{
     type:Number,
     required:[true,'Total Days is Required'],

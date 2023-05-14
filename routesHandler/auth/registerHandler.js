@@ -27,7 +27,7 @@ const registerHandler=asyncHandler( async(req,res)=>{
 
     try {
         const result=await User.create({username,email,password:hashedPassword,phoneNo,userType})
-        res.status(200).json({result,success:'User register Successfully'})
+        res.status(201).json({success:'User register Successfully'})
         
     } catch (error) {
         res.status(400)

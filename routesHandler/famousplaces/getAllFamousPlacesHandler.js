@@ -6,7 +6,7 @@ const getAllFamousPlaces=asyncHandler( async(req,res)=>{
 
     try {
         const result=await FamousPlaces.find();
-        res.status(200).json({result,success:'Get Famous Places Successfully'})
+        res.status(200).json(result)
         
     } catch (error) {
         res.status(400)

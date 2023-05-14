@@ -13,7 +13,7 @@ const createPoll=asyncHandler( async(req,res)=>{
     }
     try {
         const result=await PollingTour.create({createdBy:req.user,source,destination,totalSeats,availableSeats,totalPrice,totalDays,startDate,endDate})
-        res.status(200).json({result,success:'Poll created Successfully'})
+        res.status(200).json({success:'Poll created Successfully'})
         
     } catch (error) {
         res.status(400)
