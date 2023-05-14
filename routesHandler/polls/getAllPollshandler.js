@@ -8,12 +8,14 @@ const getAllPoll = asyncHandler(async (req, res) => {
   try {
     const result=await PollingTour.find().where('availableSeats').gte(1).where('startDate').gte(Date.now())
 
-    finalResult = result.map((n) => {
+    finalResult = result.map(async(n) => {
       
       const startdate = new Date(n.startDate);
       const enddate = new Date(n.endDate);
 
-      const user = User.findById(n.createdBy);
+      const user = await User.findById(n.createdBy)
+  
+      
       const newobj = {
         ...n._doc,
         createdBy: user.username,
@@ -21,10 +23,12 @@ const getAllPoll = asyncHandler(async (req, res) => {
         endDate: enddate.toLocaleDateString(),
       };
 
+
       return newobj;
     
     });
-    res.status(200).json(finalResult);
+ const resul =await Promise.all(finalResult);
+    res.status(200).json(resul);
   } catch (error) {
     res.status(400);
     throw new Error(error);
